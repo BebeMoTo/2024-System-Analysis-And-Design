@@ -13,6 +13,9 @@ const medicines = document.querySelector(".medicines");
 const users = document.querySelector(".users");
 const admins = document.querySelector(".admins");
 
+const darken = document.querySelector(".darken");
+const newMedForm = document.querySelector(".newMedForm");
+
 navLinks.forEach(element => {
     element.onclick = function() {
         navLinks.forEach(element => {
@@ -20,6 +23,8 @@ navLinks.forEach(element => {
             sections.forEach(section => {
                 section.classList.add("hidden");
                 addMedBtn.classList.add("hidden");
+                newMedForm.classList.add("hidden");
+                darken.classList.add("hidden");
             })
         })
         this.classList.toggle("active");
@@ -45,15 +50,63 @@ adminsBtn.addEventListener("click", function() {
 });
 
 function deleteMedicine(idNum) {
-    const addMedForm = document.querySelector(".addMedForm");
+    const addMedForm = document.querySelector(`.addMedForm${idNum}`);
     addMedForm.action = `includes/medDelete.php?medID=${idNum}`;
     addMedForm.submit();
 }
 
-const darken = document.querySelector(".darken");
-const newMedForm = document.querySelector(".newMedForm");
-console.log(newMedForm);
 addMedBtn.addEventListener("click", function() {
     darken.classList.toggle("hidden");
     newMedForm.classList.toggle("hidden");
 })
+
+
+const toastTrigger = document.querySelector('.medicinesBtn');
+const toastLiveExample = document.getElementById('liveToast');
+if (toastTrigger) {
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+  toastTrigger.addEventListener('click', () => {
+    toastBootstrap.show()
+  })
+}
+
+const toastTrigger1 = document.querySelector('.historyBtn');
+const toastLiveExample1 = document.getElementById('liveToast1');
+if (toastTrigger1) {
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample1)
+  toastTrigger1.addEventListener('click', () => {
+    toastBootstrap.show()
+  })
+}
+
+const toastTrigger2 = document.querySelector('.userBtn');
+const toastLiveExample2 = document.getElementById('liveToast2');
+if (toastTrigger2) {
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample2)
+  toastTrigger2.addEventListener('click', () => {
+    toastBootstrap.show()
+  })
+}
+
+
+
+
+
+const closeMedRequest = document.querySelector(".closeMedRequest");
+closeMedRequest.addEventListener("click", function() {
+    const requestMed= document.querySelector(".requestMed");
+    requestMed.classList.add("hidden");
+})
+function openRequestModal(fName, lName, id) {
+    const requestMed= document.querySelector(".requestMed");
+    const firstName= document.querySelector(".firstName");
+    const lastName= document.querySelector(".lastName");
+    const idNum= document.querySelector(".idNum");
+
+    requestMed.classList.remove("hidden");
+    firstName.value = `${fName}`;
+    lastName.value = `${lName}`;
+    idNum.value = `${id}`;
+}
+
+

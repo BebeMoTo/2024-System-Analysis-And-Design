@@ -5,7 +5,7 @@ if (!isset($_SESSION['username'])) {
     session_destroy();
     header("Location: index.php?loginError");
 }
-echo ("TITE");
+
 $newAmmount = $_GET['newAmount'];
 $medID = $_GET['medID'];
 

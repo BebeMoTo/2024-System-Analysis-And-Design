@@ -26,6 +26,10 @@ if (!isset($_SESSION['username'])) {
       margin-bottom: 20px;
     }
 
+    .card img {
+      height: 300px;
+    }
+
     .medCard {
       flex-basis: 30%;
       flex-shrink: 1;
@@ -47,6 +51,10 @@ if (!isset($_SESSION['username'])) {
       display: flex;
       align-items: center;
       justify-content: space-between;
+    }
+
+    .me-auto {
+      color: white;
     }
   </style>
 </head>
@@ -76,7 +84,8 @@ if (!isset($_SESSION['username'])) {
     </nav>
 
     <div class="titlebox">
-      <h2 class="adminTitle" style="display: inline-block;">History</h2> <button style="margin-right: 20px; z-index: 3;" type="button" class="btn btn-light hidden addMedBtn">Add Medicine</button>
+      <h2 class="adminTitle" style="display: inline-block;">History</h2>
+      <button style="margin-right: 20px; z-index: 3;" type="button" class="btn btn-light hidden addMedBtn">Add Medicine</button>
     </div>
     <!--SSHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESH-->
     <section class="history section">
@@ -85,7 +94,7 @@ if (!isset($_SESSION['username'])) {
       try {
 
 
-        $query = "SELECT * FROM history LEFT JOIN meds ON history.medID = meds.medID;";
+        $query = "SELECT * FROM history;";
 
         $stmt = $pdo->prepare($query);
 
@@ -94,7 +103,20 @@ if (!isset($_SESSION['username'])) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (empty($results)) {
-          header("Location: ../adminPage.php?noHistory");
+          echo ('
+          <div class="toast-container position-fixed bottom-0 end-0 p-3">
+          <div id="liveToast1" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-danger">
+              <strong class="me-auto">Warning!!!</strong>
+              <small>Shooot!</small>
+              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+              It seems like there is nothing in database.
+            </div>
+          </div>
+        </div>
+          ');
         } else {
           foreach ($results as $row) {
             $historyID = htmlspecialchars($row["historyID"]);
@@ -138,7 +160,20 @@ if (!isset($_SESSION['username'])) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (empty($results)) {
-          header("Location: ../adminPage.php?noMedicine");
+          echo ('
+          <div class="toast-container position-fixed bottom-0 end-0 p-3">
+          <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-danger">
+              <strong class="me-auto">Warning!!!</strong>
+              <small>Shooot!</small>
+              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+              It seems like there is nothing in database.
+            </div>
+          </div>
+        </div>
+          ');
         } else {
           foreach ($results as $row) {
             $medID = htmlspecialchars($row["medID"]);
@@ -154,7 +189,7 @@ if (!isset($_SESSION['username'])) {
               <h5 class="card-title">' . $medName . '</h5>
               <p class="card-text">' . $medDescription . '</p>
 
-              <form method="GET" action="includes/medUpdate.php" class="addMedForm">
+              <form method="GET" action="includes/medUpdate.php" class="addMedForm' . $medID . '">
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Amount</span>
                 <input name="newAmount" type="number" value="' . $medAmount . '" class="form-control" placeholder="000" aria-label="Username" aria-describedby="basic-addon1">
@@ -176,7 +211,66 @@ if (!isset($_SESSION['username'])) {
     </section>
     <!--SSHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESH-->
     <section class="users section hidden">
+      <?php
+      //for USERS
+      try {
 
+        $query = "SELECT * FROM userinfo;";
+
+        $stmt = $pdo->prepare($query);
+
+        $stmt->execute();
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($results)) {
+          echo ('
+          <div class="toast-container position-fixed bottom-0 end-0 p-3">
+          <div id="liveToast2" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-danger">
+              <strong class="me-auto">Warning!!!</strong>
+              <small>Shooot!</small>
+              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+              It seems like there is nothing in database.
+            </div>
+          </div>
+        </div>
+          ');
+        } else {
+          foreach ($results as $row) {
+            $userName = htmlspecialchars($row["lastName"]) . ', ' . htmlspecialchars($row["firstName"]);
+            $lastName = htmlspecialchars($row["lastName"]);
+            $firstName = htmlspecialchars($row["firstName"]);
+            $id = htmlspecialchars($row["idNum"]);
+            $userAge = htmlspecialchars($row["age"]);
+            $userSex = htmlspecialchars($row["sex"]);
+            $userAddress = htmlspecialchars($row["address"]);
+            $userEmergency = htmlspecialchars($row["emergency"]);
+            $userDiagnosis = htmlspecialchars($row["diagnosis"]);
+
+            echo ('
+            <div class="card" style="width: 90%;">
+            <div class="card-body">
+              <h5 class="card-title">' . $userName . '</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary">Age: ' . $userAge . ' / Gender: ' . $userSex . '</h6>
+              <p class="card-text">Address: ' . $userAddress . '<br>Diagnosis: ' . $userDiagnosis . '<br>Emergency: ' . $userEmergency . '</p>
+              <button class="btn btn-primary requestMedButton" onclick="openRequestModal(`' . $firstName . '`,`' . $lastName . '`, ' . $id . ')">Request</button>
+              
+              <a href="#" class="btn btn-primary">ID</a>
+              <a href="#" class="btn btn-secondary">History</a>
+              <a href="#" class="btn btn-secondary">Edit</a>
+              <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+          </div>
+                ');
+          }
+        }
+      } catch (PDOException $e) {
+        die("Query Failed: " > $e->getMessage());
+      }
+      ?>
     </section>
     <!--SSHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESH-->
     <section class="admins section hidden">
@@ -185,11 +279,11 @@ if (!isset($_SESSION['username'])) {
     <div class="darken hidden" style="z-index: 2; position:fixed; top:0; left:0;"></div>
     <!--NEEEEEEEEEEEEEEEW MEEEEEEEEEEEEEEEEEED-->
     <div class="register-form hidden newMedForm">
-      <form class="form" action="includes/medNewHandler.php" method="POST">
+      <form class="form" action="includes/medNewHandler.php" method="POST" enctype="multipart/form-data">
         <p class="title">Add Medicine</p>
         <div class="flex">
           <label>
-            <input required="" placeholder="" type="text" class="input" name="medName">
+            <input required="" placeholder="" type="text" class="input" name="name">
             <span>Medicine Name</span>
           </label>
 
@@ -205,11 +299,94 @@ if (!isset($_SESSION['username'])) {
         </label>
 
         <label>
-          <input required="" placeholder="" type="file" class="input" name="medImage" accept="image/*">
+          <input required="" placeholder="" type="file" class="input" name="image" accept="image/*">
         </label>
         <button class="submit">Submit</button>
       </form>
     </div>
+    <!--REEEEEEEEEEEEEEQQQQQQQQUUUUUUUUEEEEEEEEESSSSSSSSTTTTTTTTTTTTTT-->
+    <?php
+    //for USERS REQUEST
+    try {
+
+      $query = "SELECT * FROM meds;";
+
+      $stmt = $pdo->prepare($query);
+
+      $stmt->execute();
+
+      $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      if (empty($results)) {
+        echo ('
+              <div class="toast-container position-fixed bottom-0 end-0 p-3">
+              <div id="liveToast3" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-danger">
+                  <strong class="me-auto">Warning!!!</strong>
+                  <small style="color: white;">Shooot!</small>
+                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body bg-dark" style="color:white">
+                  Please add a medicine first.
+                </div>
+              </div>
+            </div>
+
+            <script>
+              const toastTriggerRequest = document.querySelectorAll(".requestMedButton");
+              const toastLiveExample3 = document.getElementById("liveToast3");
+              toastTriggerRequest.forEach(toast => {
+                  if (toast) {
+                      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample3)
+                      toast.addEventListener("click", () => {
+                        toastBootstrap.show()
+                      })
+                    }
+              })
+            </script>
+            ');
+      } else {
+        echo ('
+                  <div class="register-form hidden requestMed">
+                  <form class="form" action="includes/userRequest.php" method="POST">
+                    <p class="title">Medicine Request</p>
+                    <div class="flex">
+                      <label>
+                        <select class="form-select" name="medSelect" aria-label="Default select example">
+                  ');
+        foreach ($results as $row) {
+          $medName = htmlspecialchars($row["medName"]);
+          $medID = htmlspecialchars($row["medID"]);
+
+          echo ('
+                      <option value="' . $medID . '">' . $medName . '</option>
+                        ');
+        }
+        echo ('
+        </select>
+        </label>
+    
+    
+        <label>
+          <input required="" placeholder="" type="number" class="input" name="medAmount">
+          <span>Madicine Amount</span>
+        </label>
+        </div>
+        <input hidden type="text" name="firstName" class="firstName">
+        <input hidden type="text" name="lastName" class="lastName">
+        <input hidden type="num" name="idNum" class="idNum">
+    
+        <button class="submit">Submit</button>
+        <button class="btn btn-danger closeMedRequest">Close</button>
+        </form>
+        </div>
+        ');
+      }
+    } catch (PDOException $e) {
+      die("Query Failed: " > $e->getMessage());
+    }
+    ?>
+
   </header>
 
   <script src="bootstrap.js"></script>
