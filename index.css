@@ -295,3 +295,64 @@ body {
   padding: 10px 20px;
   text-shadow: #4e5861 3px 3px;
 }
+
+.myToasterDeleteSuccess {
+  width: 300px;
+  height: 50px;
+  position: absolute;
+  right: 30px;
+  bottom: 15px;
+  background-color:  rgb(96, 255, 228);
+  z-index: 5;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+.myToasterDeleteSuccess small {
+  color: green;
+}
+.myToasterAddedSuccess {
+  width: 300px;
+  height: 50px;
+  position: absolute;
+  right: 30px;
+  bottom: 15px;
+  background-color:  rgb(96, 255, 228);
+  z-index: 5;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+.myToasterAddedSuccess small {
+  color: green;
+}
+.myToasterAddedSuccesss {
+  width: 300px;
+  height: 50px;
+  position: absolute;
+  right: 30px;
+  bottom: 15px;
+  background-color:  rgb(96, 255, 228);
+  z-index: 5;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+.myToasterAddedSuccesss small {
+  color: green;
+}
+.myToasterTooLarge {
+  width: 300px;
+  height: 50px;
+  position: absolute;
+  right: 30px;
+  bottom: 15px;
+  background-color:  rgb(248, 255, 152);
+  z-index: 5;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+.myToasterTooLarge small {
+  color: rgb(128, 105, 0);
+}

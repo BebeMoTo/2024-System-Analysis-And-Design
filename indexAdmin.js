@@ -16,7 +16,7 @@ const admins = document.querySelector(".admins");
 const darken = document.querySelector(".darken");
 const newMedForm = document.querySelector(".newMedForm");
 
-const requestMed= document.querySelector(".requestMed");
+//const requestMed= document.querySelector(".requestMed");
 
 navLinks.forEach(element => {
     element.onclick = function() {
@@ -28,7 +28,7 @@ navLinks.forEach(element => {
                 newMedForm.classList.add("hidden");
                 darken.classList.add("hidden");
                 //pamo pag di maoutput to
-                requestMed.classList.add("hidden");
+                //requestMed.classList.add("hidden");
             })
         })
         this.classList.toggle("active");
@@ -79,15 +79,6 @@ const toastLiveExample1 = document.getElementById('liveToast1');
 if (toastTrigger1) {
   const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample1)
   toastTrigger1.addEventListener('click', () => {
-    toastBootstrap.show()
-  })
-}
-
-const toastTrigger2 = document.querySelector('.userBtn');
-const toastLiveExample2 = document.getElementById('liveToast2');
-if (toastTrigger2) {
-  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample2)
-  toastTrigger2.addEventListener('click', () => {
     toastBootstrap.show()
   })
 }

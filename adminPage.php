@@ -73,12 +73,7 @@ if (!isset($_SESSION['username'])) {
             <a class="nav-link active historyBtn">History</a>
             <a class="nav-link medicinesBtn">Medicines</a>
             <a class="nav-link usersBtn">Users</a>
-            <a class="nav-link adminsBtn">Admins</a>
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search User" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
         </div>
       </div>
     </nav>
@@ -260,9 +255,7 @@ if (!isset($_SESSION['username'])) {
               
               <a href="ID/ID_TEMPLATE.php?id=' . $id . '" class="btn btn-primary">ID</a>
 
-              <a href="#" class="btn btn-secondary">History</a>
-              <a href="#" class="btn btn-secondary">Edit</a>
-              <a href="#" class="btn btn-danger">Delete</a>
+              <a href="includes/userDelete.php?id=' . $id . '" class="btn btn-danger">Delete</a>
             </div>
           </div>
                 ');
@@ -302,7 +295,7 @@ if (!isset($_SESSION['username'])) {
         <label>
           <input required="" placeholder="" type="file" class="input" name="image" accept="image/*">
         </label>
-        <button class="submit">Submit</button>
+        <button class="submit">SUBMIT</button>
       </form>
     </div>
     <!--REEEEEEEEEEEEEEQQQQQQQQUUUUUUUUEEEEEEEEESSSSSSSSTTTTTTTTTTTTTT-->
@@ -310,7 +303,7 @@ if (!isset($_SESSION['username'])) {
     //for USERS REQUEST
     try {
 
-      $query = "SELECT * FROM meds;";
+      $query = "SELECT * FROM meds ORDER BY medName;";
 
       $stmt = $pdo->prepare($query);
 
@@ -349,7 +342,7 @@ if (!isset($_SESSION['username'])) {
       } else {
         echo ('
                   <div class="register-form hidden requestMed" style="position: fixed; top: 50%; left: 50%; translate: -50% -50%;">
-                  <form class="form" action="includes/userRequest.php" method="POST">
+                  <form class="form" action="includes/userRequest.php" method="POST" autocomplete="off">
                     <p class="title">Medicine Request</p>
                     <div class="flex">
                       <label>
@@ -378,7 +371,7 @@ if (!isset($_SESSION['username'])) {
         <input hidden type="num" name="idNum" class="idNum">
     
         <button class="submit">Submit</button>
-        <button class="btn btn-danger closeMedRequest">Close</button>
+        <p class="btn btn-danger closeMedRequest">Close</p>
         </form>
         </div>
 
@@ -410,7 +403,52 @@ if (!isset($_SESSION['username'])) {
     }
     ?>
 
+
   </header>
+  <div class="myToasterDeleteSuccess hidden">
+    <small>DELETED SUCCESSFULLY!!!</small>
+  </div>
+  <div class="myToasterAddedSuccess hidden">
+    <small>ADDED SUCCESSFULLY!!!</small>
+  </div>
+  <div class="myToasterAddedSuccesss hidden">
+    <small>CHANGED SUCCESSFULLY!!!</small>
+  </div>
+  <div class="myToasterTooLarge hidden">
+    <small>MEDICINE NOT ENOUGH!!!</small>
+  </div>
+
+  <script>
+    if (window.location.href.includes("deleteSuccess")) {
+      const myToasterDeleteSuccess = document.querySelector('.myToasterDeleteSuccess');
+      myToasterDeleteSuccess.classList.remove("hidden");
+      setTimeout(() => {
+        myToasterDeleteSuccess.classList.add("hidden");
+      }, 3000);
+    };
+    if (window.location.href.includes("addMedSuccess")) {
+      const myToasterAddedSuccess = document.querySelector('.myToasterAddedSuccess');
+      myToasterAddedSuccess.classList.remove("hidden");
+      setTimeout(() => {
+        myToasterAddedSuccess.classList.add("hidden");
+      }, 3000);
+    };
+    if (window.location.href.includes("updateSuccess")) {
+      const myToasterAddedSuccesss = document.querySelector('.myToasterAddedSuccesss');
+      myToasterAddedSuccesss.classList.remove("hidden");
+      setTimeout(() => {
+        myToasterAddedSuccesss.classList.add("hidden");
+      }, 3000);
+    };
+    if (window.location.href.includes("tooMuchRequest")) {
+      const myToasterTooLarge = document.querySelector('.myToasterTooLarge');
+      myToasterTooLarge.classList.remove("hidden");
+      setTimeout(() => {
+        myToasterTooLarge.classList.add("hidden");
+      }, 3000);
+    };
+  </script>
+
 
   <script src="bootstrap.js"></script>
   <script src="indexAdmin.js"></script>

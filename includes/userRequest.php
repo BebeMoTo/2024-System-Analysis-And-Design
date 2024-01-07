@@ -34,8 +34,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         foreach ($results1 as $row) {
             $origMedName = htmlspecialchars($row["medName"]);
             $medStored = htmlspecialchars($row["medAmount"]);
+
             if ($medAmount > $medStored) {
                 header("Location: ../adminPage.php?tooMuchRequest");
+                exit();
             } else {
                 $newAmount = $medStored - $medAmount;
                 $query2 = "UPDATE meds SET medAmount = $newAmount WHERE medID = $medSelect;";

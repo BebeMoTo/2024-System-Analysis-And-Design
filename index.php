@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a onclick="" class="nav-link active" aria-current="page" href="#">Home</a>
-            <a class="nav-link id">I.D.</a>
+            <a class="nav-link id">Register</a>
             <a class="nav-link admin">Admin</a>
             <a class="nav-link developer-button">Developers</a>
           </div>
@@ -41,8 +41,15 @@
           </h2>
           <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              <img src="images/background.jpg" alt="">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eum natus accusantium corporis atque, nam dolores aliquam esse vero quo iusto delectus minima consequuntur non quibusdam fugit alias id dolore.</p>
+              <img src="images/developers/Kevin.png" alt="">
+              <p>Gandang umaga haring araw, tulala sa kaning bahaw
+                Pang-amoy na nabusog sa lumalapang alingasaw
+                Ng kalye't kairitang, halayang ininit lang
+                Tiis lang ang lasa parang minumog na sinigang
+                Pasok sa paaralan, gano'n pa din pag-uwi
+                Dakilang tagahiwalay ng de kolor sa puti
+                Poso na nagturo sa'king, pa'no humingang malalim
+                Lumaki na gutom lamang ang 'di kayang kalabanin</p>
               <div class="socials">
                 <span class="socEmail socCrumbs"><a href="">E-mail</a></span>
                 <span class="socFacebook socCrumbs"><a href="">Facebook</a></span>
@@ -58,8 +65,17 @@
           </h2>
           <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              <img src="images/background.jpg" alt="">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eum natus accusantium corporis atque, nam dolores aliquam esse vero quo iusto delectus minima consequuntur non quibusdam fugit alias id dolore.</p>
+              <img src="images/developers/Jay-R.png" alt="">
+              <p>
+                Let's raise a glass or two
+                To all the things I've lost on you, oh
+                Tell me are they lost on you? Oh
+                Just that you could cut me loose, oh
+                After everything I've lost on you, is that lost on you?
+                Oh, oh
+                Oh, is that lost on you?
+                Oh, oh
+                Baby, is that lost on you? Is that lost on you?</p>
               <div class="socials">
                 <span class="socEmail socCrumbs"><a href="mailto:jayrbuitre0226@gmail.com">E-mail</a></span>
                 <span class="socFacebook socCrumbs"><a href="https://web.facebook.com/jayrculdora.buitre">Facebook</a></span>
@@ -79,8 +95,19 @@
           </h2>
           <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              <img src="images/background.jpg" alt="">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eum natus accusantium corporis atque, nam dolores aliquam esse vero quo iusto delectus minima consequuntur non quibusdam fugit alias id dolore.</p>
+              <img src="images/developers/David.png" alt="">
+              <p>Sawagashii hibi ni waraenai kimi ni
+                Omoitsuku kagiri mabushii asu o
+                Akenai yoru ni ochite yuku mae ni
+                Boku no te o tsukande hora
+                Wasurete shimaitakute tojikometa hibi mo
+                Dakishimeta nukumori de tokasu kara
+                Kowakunai yo itsuka hi ga noboru made
+                Futari de iyou</p>
+              <div class="socials">
+                <span class="socEmail socCrumbs"><a href="">E-mail</a></span>
+                <span class="socFacebook socCrumbs"><a href="">Facebook</a></span>
+              </div>
             </div>
           </div>
         </div>
@@ -92,8 +119,19 @@
           </h2>
           <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              <img src="images/background.jpg" alt="">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eum natus accusantium corporis atque, nam dolores aliquam esse vero quo iusto delectus minima consequuntur non quibusdam fugit alias id dolore.</p>
+              <img src="images/developers/Roland.png" alt="">
+              <p>And now, the end is near
+                And so I face the final curtain
+                My friend, I'll say it clear
+                I'll state my case, of which I'm certain
+                I've lived a life that's full
+                I traveled each and every highway
+                And more, much more than this
+                I did it my way</p>
+              <div class="socials">
+                <span class="socEmail socCrumbs"><a href="">E-mail</a></span>
+                <span class="socFacebook socCrumbs"><a href="">Facebook</a></span>
+              </div>
             </div>
           </div>
         </div>
@@ -105,7 +143,17 @@
           </h2>
           <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              <img src="images/developers/Paul.jpg" alt="">
+              <p>Don't mess with me, I'm a big boy now and I'm very scary
+                I punch my walls, stay out at night, and I do karate
+                Don't message me 'cause I won't reply, I wanna make you cry
+                Ain't that how it's s'posed to be? Though it isn't me
+                Boys will be bugs, right?
+                Boys will be bugs, right?</p>
+              <div class="socials">
+                <span class="socEmail socCrumbs"><a href="">E-mail</a></span>
+                <span class="socFacebook socCrumbs"><a href="">Facebook</a></span>
+              </div>
             </div>
           </div>
         </div>
@@ -114,7 +162,7 @@
   </header>
 
   <div class="register-form hidden">
-    <form class="form" action="includes/form-registerHandler.php" method="POST">
+    <form class="form" action="includes/form-registerHandler.php" method="POST" autocomplete="off">
       <p class="title">Register </p>
       <p class="message"></p>
       <div class="flex">
