@@ -159,7 +159,7 @@
   </div>
 
   <div class="admin-form hidden">
-    <form class="form1" action="includes/form-adminHandler.php" method="POST">
+    <form class="form1" action="includes/form-adminHandler.php" method="POST" autocomplete="off">
       <p class="title">Admin Log-In </p>
       <p class="message"></p>
       <label>
@@ -174,8 +174,29 @@
     </form>
   </div>
 
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-primary">
+        <strong class="me-auto" style="color: white;">Success!!!</strong>
+        <small style="color: white;">Yayyy!!!</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Details Saved 😁😁😁
+      </div>
+    </div>
+  </div>
+
   <script src="bootstrap.js"></script>
   <script src="index.js"></script>
+  <script>
+    if (window.location.href.includes("submitSuccessful")) {
+      const toastLiveExample = document.getElementById('liveToast');
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+      toastBootstrap.show();
+    }
+  </script>
 </body>
 
 </html>

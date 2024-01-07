@@ -32,3 +32,4 @@ developerButton.addEventListener("click", function() {
     developers.classList.remove("hidden");
     darken.classList.remove("hidden");
 })
+

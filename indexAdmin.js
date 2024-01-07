@@ -16,6 +16,8 @@ const admins = document.querySelector(".admins");
 const darken = document.querySelector(".darken");
 const newMedForm = document.querySelector(".newMedForm");
 
+const requestMed= document.querySelector(".requestMed");
+
 navLinks.forEach(element => {
     element.onclick = function() {
         navLinks.forEach(element => {
@@ -25,6 +27,8 @@ navLinks.forEach(element => {
                 addMedBtn.classList.add("hidden");
                 newMedForm.classList.add("hidden");
                 darken.classList.add("hidden");
+                //pamo pag di maoutput to
+                requestMed.classList.add("hidden");
             })
         })
         this.classList.toggle("active");
@@ -88,25 +92,5 @@ if (toastTrigger2) {
   })
 }
 
-
-
-
-
-const closeMedRequest = document.querySelector(".closeMedRequest");
-closeMedRequest.addEventListener("click", function() {
-    const requestMed= document.querySelector(".requestMed");
-    requestMed.classList.add("hidden");
-})
-function openRequestModal(fName, lName, id) {
-    const requestMed= document.querySelector(".requestMed");
-    const firstName= document.querySelector(".firstName");
-    const lastName= document.querySelector(".lastName");
-    const idNum= document.querySelector(".idNum");
-
-    requestMed.classList.remove("hidden");
-    firstName.value = `${fName}`;
-    lastName.value = `${lName}`;
-    idNum.value = `${id}`;
-}
 
 

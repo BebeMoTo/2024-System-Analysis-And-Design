@@ -94,7 +94,7 @@ if (!isset($_SESSION['username'])) {
       try {
 
 
-        $query = "SELECT * FROM history;";
+        $query = "SELECT * FROM history ORDER BY createdAt DESC;";
 
         $stmt = $pdo->prepare($query);
 
@@ -151,7 +151,7 @@ if (!isset($_SESSION['username'])) {
       try {
 
 
-        $query = "SELECT * FROM meds;";
+        $query = "SELECT * FROM meds ORDER BY medName;";
 
         $stmt = $pdo->prepare($query);
 
@@ -215,7 +215,7 @@ if (!isset($_SESSION['username'])) {
       //for USERS
       try {
 
-        $query = "SELECT * FROM userinfo;";
+        $query = "SELECT * FROM userinfo ORDER BY lastName;";
 
         $stmt = $pdo->prepare($query);
 
@@ -258,7 +258,8 @@ if (!isset($_SESSION['username'])) {
               <p class="card-text">Address: ' . $userAddress . '<br>Diagnosis: ' . $userDiagnosis . '<br>Emergency: ' . $userEmergency . '</p>
               <button class="btn btn-primary requestMedButton" onclick="openRequestModal(`' . $firstName . '`,`' . $lastName . '`, ' . $id . ')">Request</button>
               
-              <a href="#" class="btn btn-primary">ID</a>
+              <a href="ID/ID_TEMPLATE.php?id=' . $id . '" class="btn btn-primary">ID</a>
+
               <a href="#" class="btn btn-secondary">History</a>
               <a href="#" class="btn btn-secondary">Edit</a>
               <a href="#" class="btn btn-danger">Delete</a>
@@ -347,7 +348,7 @@ if (!isset($_SESSION['username'])) {
             ');
       } else {
         echo ('
-                  <div class="register-form hidden requestMed">
+                  <div class="register-form hidden requestMed" style="position: fixed; top: 50%; left: 50%; translate: -50% -50%;">
                   <form class="form" action="includes/userRequest.php" method="POST">
                     <p class="title">Medicine Request</p>
                     <div class="flex">
@@ -380,6 +381,28 @@ if (!isset($_SESSION['username'])) {
         <button class="btn btn-danger closeMedRequest">Close</button>
         </form>
         </div>
+
+        <script>
+        const closeMedRequest = document.querySelector(".closeMedRequest");
+        closeMedRequest.addEventListener("click", function() {
+            const requestMed= document.querySelector(".requestMed");
+            requestMed.classList.add("hidden");
+            darken.classList.add("hidden");
+        })
+        function openRequestModal(fName, lName, id) {
+            const requestMed= document.querySelector(".requestMed");
+            const firstName= document.querySelector(".firstName");
+            const lastName= document.querySelector(".lastName");
+            const idNum= document.querySelector(".idNum");
+        
+            darken.classList.remove("hidden");
+            requestMed.classList.remove("hidden");
+            firstName.value = `${fName}`;
+            lastName.value = `${lName}`;
+            idNum.value = `${id}`;
+        }
+        
+        </script>
         ');
       }
     } catch (PDOException $e) {

@@ -1,0 +1,390 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+  display: flex;
+}
+
+hr {
+  height: 0.5px;
+  background-color: black;
+  border: none;
+}
+
+.header1 {
+    position: absolute  ;
+    top: -4px;
+    left: 70px;
+    text-align: center;
+    font-size: 8px;
+    z-index: 1;
+}
+
+.IDtext {
+  position: absolute;
+    bottom: 155px;
+    left: 65px;
+    font-size: 8px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.NAMEtext {
+  position: absolute;
+  bottom: 120px;
+  left: 105px;
+  font-size: 8px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ADDtext {
+  position: absolute;
+  bottom: 65px;
+  left: 100px;
+  font-size: 8px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.BRGYtext {
+  position: absolute;
+  bottom: 28px;
+  left: 75px;
+  font-size: 8px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.photo {
+    position: absolute;
+    border: 1px solid black;
+    top: 55px;
+    left: 65px;
+    width: 96px;
+    height: 96px;
+}
+
+.IDinput {
+    position: absolute;
+    top: 169px;
+    right: 63px;
+    width: 68px;
+    font-size: 10px;
+}
+
+.NAMEline {
+    position: absolute;
+    bottom: 130px;
+    right: 24px;
+    width: 170px;
+}
+
+.NAMEtext2 {
+  position: absolute;
+  bottom: 136px;
+  right: 24px;
+  width: 170px;
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+.ADDline {
+    position: absolute;
+    bottom: 75px;
+    right: 24px;
+    width: 170px;
+}
+
+.ADDtext2 {
+  position: absolute;
+  bottom: 81px;
+  right: 21px;
+  width: 170px;
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+.CHAIRline {
+  position: absolute;
+  bottom: 48px;
+  right: 35px;
+  width: 150px;
+}
+
+.CHAIRname {
+    position: absolute;
+    bottom: 22px;
+    left: 30px;
+    height: 24px;
+    width: 170px;
+    font-size: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.BRGYIDtext {
+  position: absolute;
+  bottom: -18px;
+  left: 30px;
+  height: 24px;
+  width: 170px;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: white;
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+  font-family: 'Times New Roman', Times, serif;
+  z-index: 1;
+}
+
+.front {
+    height: 338px;
+    width: 226px;
+    border: 1px solid black;
+    position: relative;
+    
+  }
+  
+  .front::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url(cityhall_2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.5;
+    z-index: -1;
+   
+  }
+    
+.top {
+    height: 50px;
+    width: 226px;
+    background-color: blue;
+    background: linear-gradient(blue, lightblue);
+    opacity: 0.5;
+
+  }
+
+  .bottom {
+    position: absolute;
+    height: 30px;
+    width: 226px;
+    bottom: 0px;
+    background-color: blue;
+    background: linear-gradient(blue, lightblue);
+    opacity: 0.5;
+
+  }
+
+  .manilalogo {
+    position: absolute;
+    top: 5px;
+    left: 175px;
+    width: 40px;
+    height: 40px;
+    background-image: url(manila_seal.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 1;
+  }
+
+  .brgylogo {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    background-image: url(barangay_seal.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 1;
+  }
+  
+
+.back {
+    height: 338px;
+    width: 226px;
+    border: 1px solid black;
+    background-color: rgba(220, 243, 203, 0.5);
+    position: relative;
+    left: 1px;
+    
+  }
+
+.middle-back {
+  position: absolute;
+  height: 30px;
+  width: 226px;
+  bottom: 130px;
+  background-color: blue;
+  background: linear-gradient(blue, lightblue);
+  opacity: 0.5;
+}
+
+.MIDBacktext {
+  position: absolute;
+  bottom: 96px;
+  left: -16px;
+  height: 30px;
+  width: 260px;
+  font-size: 10px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+  font-family: 'Times New Roman', Times, serif;
+  z-index: 1;
+}
+
+.border {
+  height: 170px;
+  width: 190px;
+  top: 2px;
+  border: 1px solid blue;
+  position: relative;
+  margin: auto;
+
+}
+
+table, tr, td {
+  position: relative;
+  margin: auto;
+  top: 5px;
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 175px;
+  height: 30px;
+}
+
+p {
+  position: absolute;
+  bottom: 25px;
+  font-size: 8px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.back-input1 {
+  position: absolute;
+  padding-left: 2px;
+  font-size: 10px;
+  bottom: 5px;
+}
+
+.back-line {
+  position: relative;
+  height: 0.5px;
+  background-color: black;
+  border: none;
+  top: 45px;
+  width: 150px;
+}
+
+.backtext-sign {
+  position: relative;
+  left: 70px;
+  top: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.backname-line {
+  position: relative;
+  top: 55px;
+  margin-bottom: 40px;
+  width: 190px;
+}
+
+.backname-line2 {
+  position: absolute;
+  right: 18px;
+  bottom: 10px;
+  width: 70px;
+}
+
+.backname-line3 {
+  position: absolute;
+  left: 18px;
+  bottom: 10px;
+  width: 70px;
+}
+
+.backtext-name {
+  position: absolute;
+  left: 100px;
+  bottom: 85px;
+  font-weight: bold;
+}
+
+.backtext-name2 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  font-size: 10px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.backtext-add {
+  position: absolute;
+  left: 90px;
+  bottom: 45px;
+  font-weight: bold;
+}
+
+.backtext-add2 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  font-size: 10px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.backtext-rel {
+  position: absolute;
+  left: 24px;
+  bottom: 1px;
+  font-weight: bold;
+}
+
+.backtext-rel2 {
+  position: absolute;
+  bottom: 18px;
+  right: 140px;
+  left: 20px;
+  font-size: 10px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.backtext-tel {
+  position: absolute;
+  right: 20px;
+  bottom: 1px;
+  font-weight: bold;
+}
+
+.backtext-tel2 {
+  position: absolute;
+  bottom: 18px;
+  left: 140px;
+  right: 20px;
+  font-size: 10px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
