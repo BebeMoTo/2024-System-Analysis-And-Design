@@ -210,7 +210,7 @@ if (!isset($_SESSION['username'])) {
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <p>Diagnosis:</p>
+                            <p>Medical Condition/s:</p>
                             <p class="back-input1"><?php echo $userDiagnosis; ?></p>
                         </td>
                     </tr>

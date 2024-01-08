@@ -250,7 +250,7 @@ if (!isset($_SESSION['username'])) {
             <div class="card-body">
               <h5 class="card-title">' . $userName . '</h5>
               <h6 class="card-subtitle mb-2 text-body-secondary">Age: ' . $userAge . ' / Gender: ' . $userSex . '</h6>
-              <p class="card-text">Address: ' . $userAddress . '<br>Diagnosis: ' . $userDiagnosis . '<br>Emergency: ' . $userEmergency . '</p>
+              <p class="card-text">Address: ' . $userAddress . '<br>Medical Condition/s: ' . $userDiagnosis . '<br>Emergency: ' . $userEmergency . '</p>
               <button class="btn btn-primary requestMedButton" onclick="openRequestModal(`' . $firstName . '`,`' . $lastName . '`, ' . $id . ')">Request</button>
               
               <a href="ID/ID_TEMPLATE.php?id=' . $id . '" class="btn btn-primary">ID</a>

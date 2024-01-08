@@ -200,7 +200,7 @@
       </label>
       <label>
         <input required="" placeholder="" type="text" class="input" name="regDiagnosis">
-        <span>Diagnosis</span>
+        <span>Medical Condition/s</span>
       </label>
       <button class="submit">Submit</button>
     </form>

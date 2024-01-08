@@ -48,10 +48,7 @@ usersBtn.addEventListener("click", function() {
     users.classList.remove("hidden");
     adminTitle.textContent = "Users";
 });
-adminsBtn.addEventListener("click", function() {
-    admins.classList.remove("hidden");
-    adminTitle.textContent = "Admins";
-});
+
 
 function deleteMedicine(idNum) {
     const addMedForm = document.querySelector(`.addMedForm${idNum}`);
@@ -82,6 +79,4 @@ if (toastTrigger1) {
     toastBootstrap.show()
   })
 }
-
-
 
