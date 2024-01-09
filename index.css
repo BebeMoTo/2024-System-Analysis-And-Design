@@ -41,6 +41,13 @@ body {
     translate: -50% -50%;
     z-index: 3;
 }
+.request-form {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  translate: -50% -50%;
+  z-index: 3;
+}
 .form {
     display: flex;
     flex-direction: column;
@@ -307,6 +314,7 @@ body {
   border-radius: 10px;
   padding: 10px;
   text-align: center;
+  border-left: 10px green solid;
 }
 .myToasterDeleteSuccess small {
   color: green;
@@ -322,6 +330,7 @@ body {
   border-radius: 10px;
   padding: 10px;
   text-align: center;
+  border-left: 10px green solid;
 }
 .myToasterAddedSuccess small {
   color: green;
@@ -337,6 +346,7 @@ body {
   border-radius: 10px;
   padding: 10px;
   text-align: center;
+  border-left: 10px green solid;
 }
 .myToasterAddedSuccesss small {
   color: green;
@@ -352,6 +362,7 @@ body {
   border-radius: 10px;
   padding: 10px;
   text-align: center;
+  border-left: 10px  rgb(128, 105, 0) solid;
 }
 .myToasterTooLarge small {
   color: rgb(128, 105, 0);

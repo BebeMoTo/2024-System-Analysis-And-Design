@@ -1,6 +1,8 @@
 const navLinks = document.querySelectorAll(".nav-link");
 const registerForm = document.querySelector(".register-form");
 const id = document.querySelector(".id");
+const request = document.querySelector(".request");
+const requestForm = document.querySelector(".request-form");
 const adminForm = document.querySelector(".admin-form");
 const admin = document.querySelector(".admin");
 const darken = document.querySelector(".darken");
@@ -15,6 +17,7 @@ navLinks.forEach(element => {
             adminForm.classList.add("hidden");
             darken.classList.add("hidden");
             developers.classList.add("hidden");
+            requestForm.classList.add("hidden");
         })
         this.classList.toggle("active");
     }
@@ -28,8 +31,11 @@ admin.addEventListener("click", function() {
     adminForm.classList.remove("hidden");
     darken.classList.remove("hidden");
 })
+request.addEventListener("click", function() {
+    requestForm.classList.remove("hidden");
+    darken.classList.remove("hidden");
+})
 developerButton.addEventListener("click", function() {
     developers.classList.remove("hidden");
     darken.classList.remove("hidden");
 })
-

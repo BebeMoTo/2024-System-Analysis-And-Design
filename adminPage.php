@@ -69,7 +69,7 @@ if (!isset($_SESSION['username'])) {
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <a class="nav-link" aria-current="page" href="index.php">Home</a>
+            <a class="nav-link" aria-current="page" href="includes/logout.php">Log-Out</a>
             <a class="nav-link active historyBtn">History</a>
             <a class="nav-link medicinesBtn">Medicines</a>
             <a class="nav-link usersBtn">Users</a>
@@ -417,6 +417,9 @@ if (!isset($_SESSION['username'])) {
   <div class="myToasterTooLarge hidden">
     <small>MEDICINE NOT ENOUGH!!!</small>
   </div>
+
+
+
 
   <script>
     if (window.location.href.includes("deleteSuccess")) {

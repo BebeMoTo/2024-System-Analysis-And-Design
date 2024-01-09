@@ -3,7 +3,7 @@ require_once "../includes/config.php";
 if (!isset($_SESSION['username'])) {
     session_unset();
     session_destroy();
-    header("Location: index.php?loginError");
+    header("Location: ../index.php?loginError");
 }
 ?>
 
@@ -298,13 +298,13 @@ if (!isset($_SESSION['username'])) {
     </script>
     <script>
         const hover = new Audio();
-        hover.src = "../audio/hover.wav";
+        hover.src = "audio/hover.wav";
         const error = new Audio();
-        error.src = "../audio/error.wav";
+        error.src = "audio/error.wav";
         const popUp = new Audio();
-        popUp.src = "../audio/popUp.wav";
+        popUp.src = "audio/popUp.wav";
         const camera = new Audio();
-        camera.src = "../audio/camera.wav";
+        camera.src = "audio/camera.wav";
 
         function printPage() {
             const navi = document.querySelectorAll('.navi');

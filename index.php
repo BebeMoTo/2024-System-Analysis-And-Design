@@ -21,6 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a onclick="" class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link request">Request</a>
             <a class="nav-link id">Register</a>
             <a class="nav-link admin">Admin</a>
             <a class="nav-link developer-button">Developers</a>
@@ -164,7 +165,6 @@
   <div class="register-form hidden">
     <form class="form" action="includes/form-registerHandler.php" method="POST" autocomplete="off">
       <p class="title">Register </p>
-      <p class="message"></p>
       <div class="flex">
         <label>
           <input required="" placeholder="" type="text" class="input" name="regFirstName">
@@ -222,10 +222,62 @@
     </form>
   </div>
 
+  <div class="request-form hidden">
+    <form class="form1 requestForm" action="includes/form-request.php" method="POST" autocomplete="off">
+      <p class="title">Request for Medicine</p>
+      <p class="message"></p>
+      <label>
+        <input required="" placeholder="" type="number" class="input" name="userID">
+        <span>ID Number: </span>
+      </label>
+      <label>
+        <select class="form-select" name="userMedSelect" aria-label="Default select example">
+          <?php
+          try {
+            require_once "includes/dbh.inc.php";
+            $query = "SELECT * FROM meds ORDER BY medName;";
+
+            $stmt = $pdo->prepare($query);
+
+            $stmt->execute();
+
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if (empty($results)) {
+              echo ('<option>There is no medicine in the database</option>
+              <script>
+              const requestForm = document.querySelector(".requestForm");
+              requestForm.addEventListener("submit", () => {
+                event.preventDefault();
+              })
+            </script>');
+            } else {
+              foreach ($results as $row) {
+                $medName = htmlspecialchars($row["medName"]);
+                $medID = htmlspecialchars($row["medID"]);
+
+                echo ('
+                    <option value="' . $medID . '">' . $medName . '</option>
+                      ');
+              }
+            }
+          } catch (PDOException $e) {
+            die("Query Failed: " > $e->getMessage());
+          }
+          ?>
+        </select>
+      </label>
+      <label>
+        <input required="" placeholder="" type="number" class="input" name="userRequestAmount">
+        <span>Amount: </span>
+      </label>
+      <button class="submit requestSubmit">Submit</button>
+    </form>
+  </div>
 
   <div class="toast-container position-fixed bottom-0 end-0 p-3">
     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header bg-primary">
+      <div class="toast-header bg-success">
         <strong class="me-auto" style="color: white;">Success!!!</strong>
         <small style="color: white;">Yayyy!!!</small>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -236,11 +288,127 @@
     </div>
   </div>
 
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast1" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-danger">
+        <strong class="me-auto" style="color: white;">Error!!!</strong>
+        <small style="color: white;">Noooo!!!</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Something went wrong!!!
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast2" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-success">
+        <strong class="me-auto" style="color: white;">Logged Out</strong>
+        <small style="color: white;">Nice!!!</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Logged out successfully!!!
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast3" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-danger">
+        <strong class="me-auto" style="color: white;">Error!!!</strong>
+        <small style="color: white;">Noooo!!!</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Request error!!!
+      </div>
+    </div>
+  </div>
+
+
+  <?php
+  if (isset($_GET["medAmount"])) {
+    $userMedAmount = $_GET["medAmount"];
+    $userMedName = $_GET["medName"];
+  }
+
+  ?>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast4" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-danger">
+        <strong class="me-auto" style="color: white;">Error!!!</strong>
+        <small style="color: white;">Noooo!!!</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        There is/are <?php echo $userMedAmount ?> pieces of <?php echo $userMedName ?> left!!!
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast5" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-danger">
+        <strong class="me-auto" style="color: white;">Error!!!</strong>
+        <small style="color: white;">Noooo!!!</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        There is no user found!!!
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast6" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-primary">
+        <strong class="me-auto" style="color: white;">Processing...</strong>
+        <small style="color: white;">Wait...</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Request added successfully!!!
+      </div>
+    </div>
+  </div>
+
   <script src="bootstrap.js"></script>
   <script src="index.js"></script>
   <script>
     if (window.location.href.includes("submitSuccessful")) {
       const toastLiveExample = document.getElementById('liveToast');
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+      toastBootstrap.show();
+    } else if (window.location.href.includes("loginError")) {
+      const toastLiveExample = document.getElementById('liveToast1');
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+      toastBootstrap.show();
+    }
+    if (window.location.href.includes("submitSuccessful")) {
+      const toastLiveExample = document.getElementById('liveToast');
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+      toastBootstrap.show();
+    } else if (window.location.href.includes("logout")) {
+      const toastLiveExample = document.getElementById('liveToast2');
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+      toastBootstrap.show();
+    } else if (window.location.href.includes("requestError=1")) {
+      const toastLiveExample = document.getElementById('liveToast4');
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+      toastBootstrap.show();
+    } else if (window.location.href.includes("requestError")) {
+      const toastLiveExample = document.getElementById('liveToast3');
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+      toastBootstrap.show();
+    } else if (window.location.href.includes("noUserFound")) {
+      const toastLiveExample = document.getElementById('liveToast5');
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+      toastBootstrap.show();
+    } else if (window.location.href.includes("requestAdded")) {
+      const toastLiveExample = document.getElementById('liveToast6');
       const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
       toastBootstrap.show();
     }
