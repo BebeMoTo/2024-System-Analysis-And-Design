@@ -73,6 +73,7 @@ if (!isset($_SESSION['username'])) {
             <a class="nav-link active historyBtn">History</a>
             <a class="nav-link medicinesBtn">Medicines</a>
             <a class="nav-link usersBtn">Users</a>
+            <a class="nav-link requestBtn">Requests</a>
           </ul>
         </div>
       </div>
@@ -258,6 +259,81 @@ if (!isset($_SESSION['username'])) {
               <a href="includes/userDelete.php?id=' . $id . '" class="btn btn-danger">Delete</a>
             </div>
           </div>
+                ');
+          }
+        }
+      } catch (PDOException $e) {
+        die("Query Failed: " > $e->getMessage());
+      }
+      ?>
+    </section>
+    <!--SSHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESH-->
+    <section class="requests section hidden">
+      <?php
+      //for REQUESTS
+      try {
+        $query = "SELECT * FROM requests ORDER BY createdAt DESC;";
+
+        $stmt = $pdo->prepare($query);
+
+        $stmt->execute();
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($results)) {
+          echo ('
+          <div class="toast-container position-fixed bottom-0 end-0 p-3">
+          <div id="liveToast1" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-danger">
+              <strong class="me-auto">Warning!!!</strong>
+              <small>Shooot!</small>
+              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+              It seems like there is nothing in database.
+            </div>
+          </div>
+        </div>
+          ');
+        } else {
+          foreach ($results as $row) {
+            $reqUserID = htmlspecialchars($row["userID"]);
+            $reqMedID = htmlspecialchars($row["medID"]);
+            $reqMedAmount = htmlspecialchars($row["medAmount"]);
+            $reqDate = htmlspecialchars($row["createdAt"]);
+            $requestID = htmlspecialchars($row["requestID"]);
+
+            $query2 = "SELECT * FROM userinfo WHERE idNum = $reqUserID;";
+            $stmt2 = $pdo->prepare($query2);
+            $stmt2->execute();
+            $results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($results2 as $row) {
+              $reqFirstName = htmlspecialchars($row["firstName"]);
+              $reqLastName = htmlspecialchars($row["lastName"]);
+              $reqUsername = htmlspecialchars($row["lastName"]) . ', ' . htmlspecialchars($row["firstName"]);
+            }
+
+            $query3 = "SELECT * FROM meds WHERE medID = $reqMedID;";
+            $stmt3 = $pdo->prepare($query3);
+            $stmt3->execute();
+            $results3 = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($results3 as $row) {
+              $reqMedName = htmlspecialchars($row["medName"]);
+              $reqMedDescription = htmlspecialchars($row["medDescription"]);
+            }
+
+            echo ('
+                <div class="card" style="border-radius: 0;">
+                <div class="card-header">
+                  Date Requested: ' . $reqDate . '
+                </div>
+                <div class="card-body bg-dark">
+                  <h5 class="card-title" style="color: white;">' . $reqUsername . '</h5>
+                  <p class="card-text" style="color: white;">Requested Medicine: ' . $reqMedName . '<br>Requested Amount: x' . $reqMedAmount . '</p>
+                  <a href="includes/requestsGrant.php?historyID=' . $requestID . '" class="btn btn-primary">Grant</a>
+                  <a href="includes/requestDelete.php?historyID=' . $requestID . '" class="btn btn-danger">Delete</a>
+                </div>
+              </div>
                 ');
           }
         }

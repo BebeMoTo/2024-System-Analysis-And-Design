@@ -6,12 +6,14 @@ const historyBtn = document.querySelector(".historyBtn");
 const medicinesBtn = document.querySelector('.medicinesBtn');
 const usersBtn = document.querySelector('.usersBtn');
 const adminsBtn = document.querySelector('.adminsBtn');
+const requestBtn = document.querySelector('.requestBtn');
 const addMedBtn = document.querySelector(".addMedBtn");
 
 const history = document.querySelector(".history");
 const medicines = document.querySelector(".medicines");
 const users = document.querySelector(".users");
 const admins = document.querySelector(".admins");
+const requests = document.querySelector(".requests");
 
 const darken = document.querySelector(".darken");
 const newMedForm = document.querySelector(".newMedForm");
@@ -48,6 +50,10 @@ usersBtn.addEventListener("click", function() {
     users.classList.remove("hidden");
     adminTitle.textContent = "Users";
 });
+requestBtn.addEventListener("click", function() {
+    requests.classList.remove("hidden");
+    adminTitle.textContent = "Requests";
+})
 
 
 function deleteMedicine(idNum) {
