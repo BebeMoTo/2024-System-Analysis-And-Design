@@ -7,9 +7,10 @@ const medicinesBtn = document.querySelector('.medicinesBtn');
 const usersBtn = document.querySelector('.usersBtn');
 const adminsBtn = document.querySelector('.adminsBtn');
 const requestBtn = document.querySelector('.requestBtn');
+const adminBtn = document.querySelector('.adminBtn');
 const addMedBtn = document.querySelector(".addMedBtn");
 
-const history = document.querySelector(".history");
+const historya = document.querySelector(".history");
 const medicines = document.querySelector(".medicines");
 const users = document.querySelector(".users");
 const admins = document.querySelector(".admins");
@@ -35,10 +36,10 @@ navLinks.forEach(element => {
         })
         this.classList.toggle("active");
     }
-});
+})
 
 historyBtn.addEventListener("click", function() {
-    history.classList.remove("hidden");
+    historya.classList.remove("hidden");
     adminTitle.textContent = "History";
 });
 medicinesBtn.addEventListener("click", function() {
@@ -54,6 +55,11 @@ requestBtn.addEventListener("click", function() {
     requests.classList.remove("hidden");
     adminTitle.textContent = "Requests";
 })
+adminBtn.addEventListener("click", function() {
+    adminTitle.textContent = "Admin";
+    admins.classList.remove("hidden");
+
+});
 
 
 function deleteMedicine(idNum) {

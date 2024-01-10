@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         require_once "dbh.inc.php";
 
-        $query = "SELECT * FROM admin WHERE username = :adminUsername AND password = :adminPassword;";
+        $query = "SELECT * FROM admin WHERE BINARY username = :adminUsername AND BINARY password = :adminPassword;";
 
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":adminUsername", $adminUsername);

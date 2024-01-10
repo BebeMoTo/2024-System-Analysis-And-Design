@@ -1,11 +1,12 @@
 <?php
 require_once "includes/dbh.inc.php";
 require_once "includes/config.php";
-if (!isset($_SESSION['username'])) {
-  session_unset();
-  session_destroy();
-  header("Location: index.php?loginError");
-}
+// if (!isset($_SESSION['username'])) {
+//   session_unset();
+//   session_destroy();
+//   header("Location: index.php?loginErrora");
+//   echo ($_SESSION['username']);
+// }
 ?>
 
 
@@ -56,6 +57,14 @@ if (!isset($_SESSION['username'])) {
     .me-auto {
       color: white;
     }
+
+    .adminInput {
+      border: none;
+      background-color: #dcdcdc;
+      padding: 3px 10px;
+      border-right: 5px solid black;
+
+    }
   </style>
 </head>
 
@@ -69,11 +78,12 @@ if (!isset($_SESSION['username'])) {
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <a class="nav-link" aria-current="page" href="includes/logout.php">Log-Out</a>
-            <a class="nav-link active historyBtn">History</a>
-            <a class="nav-link medicinesBtn">Medicines</a>
-            <a class="nav-link usersBtn">Users</a>
+            <a class="nav-link medicinesBtn active">Medicines</a>
             <a class="nav-link requestBtn">Requests</a>
+            <a class="nav-link historyBtn">History</a>
+            <a class="nav-link usersBtn">Users</a>
+            <a class="nav-link adminBtn">Admin</a>
+            <a class="nav-link" aria-current="page" href="includes/logout.php">Log-Out</a>
           </ul>
         </div>
       </div>
@@ -81,10 +91,10 @@ if (!isset($_SESSION['username'])) {
 
     <div class="titlebox">
       <h2 class="adminTitle" style="display: inline-block;">History</h2>
-      <button style="margin-right: 20px; z-index: 3;" type="button" class="btn btn-light hidden addMedBtn">Add Medicine</button>
+      <button style="margin-right: 20px; z-index: 3;" type="button" class="btn btn-light addMedBtn">Add Medicine</button>
     </div>
     <!--SSHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESH-->
-    <section class="history section">
+    <section class="history section hidden">
       <?php
       //for HISTORY
       try {
@@ -141,7 +151,7 @@ if (!isset($_SESSION['username'])) {
       ?>
     </section>
     <!--SSHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESH-->
-    <section class="medicines section hidden">
+    <section class="medicines section">
       <?php
       //for MEDICINES
       try {
@@ -319,6 +329,9 @@ if (!isset($_SESSION['username'])) {
             $results3 = $stmt3->fetchAll(PDO::FETCH_ASSOC);
             foreach ($results3 as $row) {
               $reqMedName = htmlspecialchars($row["medName"]);
+              if (!isset($reqMedName)) {
+                $reqMedName = "Deleted Medicine";
+              }
               $reqMedDescription = htmlspecialchars($row["medDescription"]);
             }
 
@@ -330,8 +343,8 @@ if (!isset($_SESSION['username'])) {
                 <div class="card-body bg-dark">
                   <h5 class="card-title" style="color: white;">' . $reqUsername . '</h5>
                   <p class="card-text" style="color: white;">Requested Medicine: ' . $reqMedName . '<br>Requested Amount: x' . $reqMedAmount . '</p>
-                  <a href="includes/requestsGrant.php?historyID=' . $requestID . '" class="btn btn-primary">Grant</a>
-                  <a href="includes/requestDelete.php?historyID=' . $requestID . '" class="btn btn-danger">Delete</a>
+                  <a href="includes/requestsGrant.php?requestID=' . $requestID . '" class="btn btn-primary">Grant</a>
+                  <a href="includes/requestsDelete.php?requestID=' . $requestID . '" class="btn btn-danger">Delete</a>
                 </div>
               </div>
                 ');
@@ -344,7 +357,39 @@ if (!isset($_SESSION['username'])) {
     </section>
     <!--SSHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESH-->
     <section class="admins section hidden">
+      <?php
+      //for USERS
+      try {
 
+        $query = "SELECT * FROM admin ORDER BY adminID;";
+
+        $stmt = $pdo->prepare($query);
+
+        $stmt->execute();
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($results as $row) {
+          $adminID = htmlspecialchars($row["adminID"]);
+          $adminUsername = htmlspecialchars($row["username"]);
+          $adminPassword = htmlspecialchars($row["password"]);
+
+          echo ('<form method="GET" action="includes/adminUpdate.php">
+            <div class="card" style="width: 90%;">
+            <div class="card-body">
+              <h5 class="card-title"><input name="newUsername" type="text" class="adminInput" value=' . $adminUsername . '></h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary">Password: <input class="adminInput" name="newPassword" type="text" value='  . $adminPassword . '></h6>
+              <input type="number" hidden name="adminID" value="' . $adminID . '">
+              <button class="btn btn-primary requestMedButton" type="submit">Update</button>
+
+            </div>
+          </div> </form>
+                ');
+        }
+      } catch (PDOException $e) {
+        die("Query Failed: " > $e->getMessage());
+      }
+      ?>
     </section>
     <div class="darken hidden" style="z-index: 2; position:fixed; top:0; left:0;"></div>
     <!--NEEEEEEEEEEEEEEEW MEEEEEEEEEEEEEEEEEED-->
